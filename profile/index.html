@@ -10,7 +10,7 @@
     <title>Profile</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
     <!--[if lt IE 7]>
@@ -19,7 +19,39 @@
         <a href="#">upgrade your browser</a> to improve your experience.
       </p>
     <![endif]-->
+    <nav>
+      <div class="brand">
+        <a href="/">MeShop.</a>
+      </div>
+      <div class="nav-items">
+        <a href="/">Home</a>
+        <a href="/profile">Profile</a>
+        <a href="/cart">My Cart</a>
+      </div>
+    </nav>
 
-    <script src="" async defer></script>
+    <main>
+      <div id="profile-page">
+        <div id="profile-content">
+          <div class="welcome" id="profile">Profile</div>
+          <div id="avatar">
+            <img src="../resources/avatar.jpg" alt="" />
+          </div>
+
+          <input class="input-section" id="fName" placeholder="First Name"></input>
+          <input class="input-section" id="lName" placeholder="Last Name"></input>
+          <div class="welcome" id="">Edit password</div>
+          <input class="input-section" id="old-password" placeholder="old Password"></input>
+          <input class="input-section" id="new-password" placeholder="new Password"></input>
+          <input class="input-section" id="confirm-new-password" placeholder="confirm new Password"></input>
+          <div class="logout-section">
+            <button type="submit" id="change-pass-btn">Change Password</button>
+            <button type="submit" id="logout-btn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script src="./script.js" async defer></script>
   </body>
 </html>
