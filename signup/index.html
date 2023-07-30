@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <nav>
+        <div class="brand">
+          <a href="/">MeShop.</a>
+        </div>
+        <div class="nav-items">
+          <a href="/">Home</a>
+          <a href="/login">Login</a>
+          <a href="/signup">Signup</a>
+          <a href="/cart">My Cart</a>
+        </div>
+      </nav>
+        <main>
+            <div id="sign-up">
+                <div id="signup-content">
+                  <div class="welcome">Welcome back! 👋</div>
+                  <div class="signup-heading">Sign up to your account</div>
+                  <form action="">
+                    <div class="input-section">
+                      <label for="user-name">Your Name:</label>
+                      <input
+                        type="text"
+                        name="user-name"
+                        id="user-name"
+                        class="input-field"
+                      />
+                    </div>
+                    <div class="input-section">
+                      <label for="email">Your Email:</label>
+                      <input type="email" name="email" id="email" class="input-field" />
+                    </div>
+                    <div class="input-section">
+                      <label for="password">Password:</label>
+                      <input
+                        type="password"
+                        name="password"
+                        id="password"
+                        class="input-field"
+                      />
+                    </div>
+                    <div class="input-section">
+                      <label for="cpassword">Confirm Password:</label>
+                      <input
+                        type="password"
+                        name="cpassword"
+                        id="cpassword"
+                        class="input-field"
+                      />
+                    </div>
+                    <div class="continue-section">
+                      <button type="submit" id="continue-btn">CONTINUE</button>
+                    </div>
+                    <div id="error-section"></div>
+                  </form>
+                </div>
+              </div>
+        </main>
+
+
+    <script src="./script.js"></script>
+</body>
+</html>
