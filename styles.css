@@ -1,1 +1,122 @@
 /* Write styles here */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: "Inter", sans-serif;
+    overflow-x: hidden;
+  }
+  
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  input[type="range"] {
+    width: 100%;
+    height: 2px;
+    margin: 1rem auto;
+  }
+  
+  datalist {
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    width: 100%;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    position: sticky;
+    z-index: 100;
+    top: 0;
+  
+    background-color: black;
+    border-bottom: 1px solid white;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+  
+  nav .brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  nav .nav-items a {
+    margin: 0 1rem;
+  }
+
+  /* main styling */
+  main{
+    display: flex;
+    width: 100%;    
+    height: 100vh;
+  }
+
+  /* main #text-div, main #image-div{
+    width: 50%;
+  } */
+
+  main #text-div{
+    width: 40%;
+    padding: 25px;
+  }
+  main #image-div{
+    width: 60%;
+    display: flex;
+    align-items: self-end;
+  }
+  main #image-div img{
+    width: 100%;
+  }
+
+
+  #text-div #heading{
+    font-size: 45px;
+  }
+  #text-div .description{
+    margin: 18px 0px;
+    font-size: 21px;
+  }
+  
+  #text-div #btn-div{
+    display: flex;
+    gap: 15px;
+    width: 55%;
+  }
+
+  #btn-div #login-btn{
+    width: 100%;
+  }
+  #btn-div #login-btn button{
+    width: 100%;
+    height: 29px;
+    border-radius: 6px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border: none;
+  }
+  #btn-div #signup-btn{
+    width: 100%;
+  }
+  #btn-div #signup-btn button{
+    width: 100%;
+    height: 29px;
+    border-radius: 6px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border: none;
+  }
+  

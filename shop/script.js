@@ -266,31 +266,6 @@ const rangeFilterHandler = (ev) => {
 }
 
 
-
-
-// fetching items
-const getProducts = async() => {
-  const res = await fetch("https://fakestoreapi.com/products");
-  const d = await res.json();
-
-  // adding random color and size
-  const data = d.map((val) => {
-    val["color"] = addRandomColors();
-    val["size"] = addRandomSize();
-
-    return val;
-  })
-  items = data.map((val) => {
-    return JSON.parse(JSON.stringify(val)); 
-  })
-    // console.log(data);
-
-  mensClothing(data);
-  womensClothing(data);
-}
-
-
-
 // price checkbox filter logic 
 const priceCheckboxFiltersHandler = (ev) => {
   const userInput = [];
@@ -334,6 +309,34 @@ const priceCheckboxFiltersHandler = (ev) => {
  }
 
 
+
+
+
+// fetching items
+const getProducts = async() => {
+  const res = await fetch("https://fakestoreapi.com/products");
+  const d = await res.json();
+
+  // adding random color and size
+  const data = d.map((val) => {
+    val["color"] = addRandomColors();
+    val["size"] = addRandomSize();
+
+    return val;
+  })
+  items = data.map((val) => {
+    return JSON.parse(JSON.stringify(val)); 
+  })
+    // console.log(data);
+
+  mensClothing(data);
+  womensClothing(data);
+}
+
+
+
+
+
 // display onto UI in shop page
 const displayItems = (target, data) => {
   let items = "";
@@ -342,6 +345,7 @@ const displayItems = (target, data) => {
     <div class="item">
               <img src=${val["image"]} alt="Item" />
               <div class="info">
+              <div>${val["title"]}</div>
                 <div class="row">
                   <div class="price">$${val["price"]}</div>
                   <div class="sized">${val["size"]}</div>
@@ -352,7 +356,7 @@ const displayItems = (target, data) => {
                     <div class="circle" style="background-color: ${val["color"]}"></div>
                   </div>
                 </div>
-                <div class="row">${val["rating"]["rate"]}</div>
+                <div class="row">Rating: ${val["rating"]["rate"]}</div>
               </div>
               <button id="addBtn">Add to Cart</button>
             </div>
