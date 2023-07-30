@@ -21,6 +21,7 @@ const searchBar = document.getElementById("search-bar");
 // const jewelleryFilter = document.getElementById("jewellery-filter");
 const allFilters = document.querySelectorAll(".filter");
 const checkboxFilters = document.querySelectorAll(".check-value");
+const sizesCheckboxFilters = document.querySelectorAll(".sizes-check-value");
 
 
 // checkboxes
@@ -174,7 +175,7 @@ if(selectedId === "all-filter"){
 }
 
 
-// checkbox checkbox filter logic 
+// color checkbox checkbox filter logic 
 const checkboxFiltersHandler = (ev) => {
  const userInput = [];
   checkboxFilters.forEach((val) => {
@@ -197,6 +198,35 @@ const checkboxFiltersHandler = (ev) => {
   }
   mensClothing(checkFiltered);
   womensClothing(checkFiltered);
+}
+
+
+
+// sizes checkbox checkbox filter logic 
+const sizesCheckboxFiltersHandler = (ev) => {
+ const userInput = [];
+ sizesCheckboxFilters.forEach((val) => {
+    if(val.checked){
+      userInput.push(val.id);
+    }
+  });
+
+  console.log(userInput)
+  
+  const sizeCheckFiltered = items.filter((val) => {
+    return userInput.find((size) => {
+      if((val["size"].toLowerCase()) === size){
+        return val;
+      }
+    })
+  });
+  if(sizeCheckFiltered.length <= 0){
+    mensClothing(items);
+    womensClothing(items);
+    return;
+  }
+  mensClothing(sizeCheckFiltered);
+  womensClothing(sizeCheckFiltered);
 }
 
 
@@ -300,5 +330,8 @@ allFilters.forEach((val) => {
 })
 checkboxFilters.forEach((val) => {
   val.addEventListener("change", checkboxFiltersHandler);
+})
+sizesCheckboxFilters.forEach((val) => {
+  val.addEventListener("change", sizesCheckboxFiltersHandler);
 })
 
