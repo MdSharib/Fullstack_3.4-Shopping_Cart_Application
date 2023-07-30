@@ -22,6 +22,8 @@ const searchBar = document.getElementById("search-bar");
 const allFilters = document.querySelectorAll(".filter");
 const checkboxFilters = document.querySelectorAll(".check-value");
 const sizesCheckboxFilters = document.querySelectorAll(".sizes-check-value");
+const rangeFilter = document.getElementById("range");
+const priceCheckboxFilters = document.querySelectorAll(".price-check");
 
 
 // checkboxes
@@ -202,7 +204,7 @@ const checkboxFiltersHandler = (ev) => {
 
 
 
-// sizes checkbox checkbox filter logic 
+// sizes checkbox filter logic 
 const sizesCheckboxFiltersHandler = (ev) => {
  const userInput = [];
  sizesCheckboxFilters.forEach((val) => {
@@ -229,6 +231,40 @@ const sizesCheckboxFiltersHandler = (ev) => {
   womensClothing(sizeCheckFiltered);
 }
 
+// range filter logic 
+const rangeFilterHandler = (ev) => {
+
+// console.log(ev.target.value);
+
+//  const userInput = [];
+//  sizesCheckboxFilters.forEach((val) => {
+//     if(val.checked){
+//       userInput.push(val.id);
+//     }
+//   });
+
+  // console.log(userInput);
+
+ 
+  
+  const rangeFiltered = items.filter((val) => {
+    const curr = Math.floor(val["rating"]["rate"]);
+    // console.log(curr);
+    if(+curr === +ev.target.value){
+      return val;
+    }
+  });
+
+  
+  if(rangeFiltered.length <= 0 && ev.target.value !== "5"){
+    mensClothing(items);
+    womensClothing(items);
+    return;
+  }
+  mensClothing(rangeFiltered);
+  womensClothing(rangeFiltered);
+}
+
 
 
 
@@ -252,6 +288,50 @@ const getProducts = async() => {
   mensClothing(data);
   womensClothing(data);
 }
+
+
+
+// price checkbox filter logic 
+const priceCheckboxFiltersHandler = (ev) => {
+  const userInput = [];
+  priceCheckboxFilters.forEach((val) => {
+     if(val.checked){
+       userInput.push(val.id);
+     }
+   });
+ 
+   console.log(userInput);
+  
+   
+   const priceCheckFiltered = items.filter((val) => {
+    return userInput.find((price) => {
+      if(price === "100on"){
+        if(val.price >= 100 ){
+          return val;
+        }
+      }else {
+
+        const currPrice = price.split("-");
+        const lower = currPrice[0];
+        const higher = currPrice[1];
+        if(val.price >= +lower && val.price <= +higher){
+          return val;
+        }
+      }
+
+     });
+    //  return filteredrange;
+   });
+
+  //  console.log(priceCheckFiltered);
+   if(priceCheckFiltered.length <= 0){
+     mensClothing(items);
+     womensClothing(items);
+     return;
+   }
+   mensClothing(priceCheckFiltered);
+   womensClothing(priceCheckFiltered);
+ }
 
 
 // display onto UI in shop page
@@ -324,14 +404,24 @@ const womensClothing = (data) => {
 
 getProducts();
 
+
+// search bar event
 searchBar.addEventListener("input" , searchBarHandler);
+
+// men/jewellery event
 allFilters.forEach((val) => {
   val.addEventListener("click", allFiltersHandler);
 })
+
+// sidebar filters event
 checkboxFilters.forEach((val) => {
   val.addEventListener("change", checkboxFiltersHandler);
 })
 sizesCheckboxFilters.forEach((val) => {
   val.addEventListener("change", sizesCheckboxFiltersHandler);
+})
+rangeFilter.addEventListener("change", rangeFilterHandler)
+priceCheckboxFilters.forEach((val) => {
+  val.addEventListener("change", priceCheckboxFiltersHandler);
 })
 
