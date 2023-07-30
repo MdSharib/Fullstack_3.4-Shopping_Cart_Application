@@ -75,12 +75,13 @@ const loginBtnHandler = (ev) => {
 
   
 
-//   let token =
-//     (Math.random() + " ").substring(2, 10) +
-//     (Math.random() + " ").substring(2, 10);
+  let token =
+    (Math.random() + " ").substring(2, 10) +
+    (Math.random() + " ").substring(2, 10);
   let user = {
     email: email.value,
     password: password.value,
+    token: token,
   };
   checkLocalStorage(user);
   // console.log(user);

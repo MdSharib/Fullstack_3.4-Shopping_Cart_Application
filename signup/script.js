@@ -22,8 +22,8 @@ const clearingFields = (token) => {
   email.value = "";
   password.value = "";
   confirmPassword.value = "";
-  localStorage.setItem("isLoggedIn", true);
-  localStorage.setItem("userToken", JSON.stringify(token));
+  // localStorage.setItem("isLoggedIn", true);
+  // localStorage.setItem("userToken", JSON.stringify(token));
   window.location.href = "../shop";
 };
 
@@ -35,7 +35,7 @@ const setLocalStorage = (userData) => {
     users = [];
     users.push(userData);
     localStorage.setItem("users", JSON.stringify(users));
-    clearingFields(userData.token);
+    clearingFields();
     return;
   }
 
@@ -48,7 +48,7 @@ const setLocalStorage = (userData) => {
   }
   users.push(userData);
   localStorage.setItem("users", JSON.stringify(users));
-  clearingFields(userData.token);
+  clearingFields();
 };
 
 
@@ -72,14 +72,13 @@ const signUpFn = (ev) => {
     return;
   }
 
-  let token =
-    (Math.random() + " ").substring(2, 10) +
-    (Math.random() + " ").substring(2, 10);
+  // let token =
+  //   (Math.random() + " ").substring(2, 10) +
+  //   (Math.random() + " ").substring(2, 10);
   let user = {
     name: userName.value,
     email: email.value,
     password: password.value,
-    token: token,
   };
   setLocalStorage(user);
   // console.log(user);

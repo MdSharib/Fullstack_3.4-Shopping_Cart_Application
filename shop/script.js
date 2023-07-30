@@ -33,6 +33,7 @@ const redCheck = document.getElementById("red");
 let menClothes = [];
 let womenClothes = [];
 let items = [];
+let cartItems = [];
 
 // filter logic
 const redCheckHandler = (ev) => {
@@ -334,6 +335,41 @@ const getProducts = async() => {
 }
 
 
+// adding to cart
+const addBtnHandler = (ev) => {
+  const id = ev.value;
+  const product = items.find((val) => {
+    if(+val["id"] === +id){
+      return val;
+    }
+  })
+
+  setCartToLocalStorage(product);
+}
+
+
+const setCartToLocalStorage = (product) => {
+  let itemCart = JSON.parse(localStorage.getItem("cartItems"));
+
+  if(!itemCart){
+    itemCart = [];
+    itemCart.push(product);
+    cartItems.push(product);
+    localStorage.setItem("cartItems", JSON.stringify(itemCart));
+    alert("added to cart!");
+    console.log(cartItems);
+    return;
+  }
+  
+  itemCart.push(product);
+  localStorage.setItem("cartItems", JSON.stringify(itemCart));
+  cartItems.push(product);
+  alert("added to cart!")
+  console.log(cartItems);
+  return;
+
+}
+
 
 
 
@@ -358,7 +394,7 @@ const displayItems = (target, data) => {
                 </div>
                 <div class="row">Rating: ${val["rating"]["rate"]}</div>
               </div>
-              <button id="addBtn">Add to Cart</button>
+              <button id="addBtn" value=${val["id"]} onClick="addBtnHandler(this)">Add to Cart</button>
             </div>
     `
   });
