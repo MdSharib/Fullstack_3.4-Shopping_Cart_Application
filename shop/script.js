@@ -13,12 +13,23 @@
 const menClothingSection = document.getElementById("men-clothing");
 const womenClothingSection = document.getElementById("women-clothing");
 const searchBar = document.getElementById("search-bar");
+
+// all/mens filters
+// const allFilter = document.getElementById("all-filter");
+// const mensFilter = document.getElementById("mens-filter");
+// const womensFilter = document.getElementById("womens-filter");
+// const jewelleryFilter = document.getElementById("jewellery-filter");
+const allFilters = document.querySelectorAll(".filter");
+const checkboxFilters = document.querySelectorAll(".check-value");
+
+
 // checkboxes
 const redCheck = document.getElementById("red");
 
 
-menClothes = [];
-womenClothes = [];
+let menClothes = [];
+let womenClothes = [];
+let items = [];
 
 // filter logic
 const redCheckHandler = (ev) => {
@@ -55,9 +66,143 @@ const searchBarHandler = (ev) => {
 }
 
 
+const clearOtherFilters = () => {
+  allFilters.forEach((val) => {
+    val.style.backgroundColor = "white";
+    val.style.color = "black";
+  })
+}
+
+
+// handlnng mens/womens filter logic - wrong logic for electronic/jewellery category
+const allFiltersHandler = (ev) => {
+  const selectedId = ev.target.id;
+  const currEle = ev.target.style;
+
+if(selectedId === "all-filter"){
+  if(currEle.backgroundColor !== "black"){
+    clearOtherFilters();
+
+    currEle.backgroundColor = "black";
+    currEle.color = "white";
+  }else {
+    currEle.backgroundColor = "white";
+    currEle.color = "black";
+  }
+  menClothingSection.style.display = "flex";
+  womenClothingSection.style.display = "flex";
+  return;
+}
+
+  // for men-filter
+  if(selectedId === "mens-filter"){
+    if(currEle.backgroundColor !== "black"){
+      clearOtherFilters();
+
+      currEle.backgroundColor = "black";
+      currEle.color = "white";
+    }else {
+      currEle.backgroundColor = "white";
+      currEle.color = "black";
+    }
+    if(menClothingSection.style.display !== "flex"){
+      menClothingSection.style.display = "flex";
+    }
+    if(womenClothingSection.style.display !== "none"){
+      womenClothingSection.style.display = "none";
+      return;
+    }
+    womenClothingSection.style.display = "flex";
+    return;
+  }
+
+// for women filter
+  if(selectedId === "womens-filter"){
+    if(currEle.backgroundColor !== "black"){
+      clearOtherFilters();
+
+      currEle.backgroundColor = "black";
+      currEle.color = "white";
+    }else {
+      currEle.backgroundColor = "white";
+      currEle.color = "black";
+    }
+
+    if(womenClothingSection.style.display !== "flex"){
+      womenClothingSection.style.display = "flex";
+    }
 
 
 
+    if(menClothingSection.style.display !== "none"){
+      
+      menClothingSection.style.display = "none";
+      return;
+    }
+    
+    menClothingSection.style.display = "flex";
+    return;
+  }
+
+// for jewellery
+  if(selectedId === "jewellery-filter" || selectedId === "electronics-filter"){
+    if(currEle.backgroundColor !== "black"){
+      clearOtherFilters();
+
+      currEle.backgroundColor = "black";
+      currEle.color = "white";
+    }else {
+      currEle.backgroundColor = "white";
+      currEle.color = "black";
+    }
+    // if(womenClothingSection.style.display !== "none" || menClothingSection.style.display !== "none"){
+
+    //   womenClothingSection.style.display = "none";
+    //   menClothingSection.style.display = "none";
+    //   return;
+    // }
+
+    // womenClothingSection.style.display = "flex";
+    // menClothingSection.style.display = "flex";
+    
+    womenClothingSection.style.display = "none";
+    menClothingSection.style.display = "none";
+  
+  
+  }
+
+}
+
+
+// checkbox checkbox filter logic 
+const checkboxFiltersHandler = (ev) => {
+ const userInput = [];
+  checkboxFilters.forEach((val) => {
+    if(val.checked){
+      userInput.push(val.id);
+    }
+  });
+  
+  const checkFiltered = items.filter((val) => {
+    return userInput.find((color) => {
+      if(val["color"] === color){
+        return val;
+      }
+    })
+  });
+  if(checkFiltered.length <= 0){
+    mensClothing(items);
+    womensClothing(items);
+    return;
+  }
+  mensClothing(checkFiltered);
+  womensClothing(checkFiltered);
+}
+
+
+
+
+// fetching items
 const getProducts = async() => {
   const res = await fetch("https://fakestoreapi.com/products");
   const d = await res.json();
@@ -69,7 +214,9 @@ const getProducts = async() => {
 
     return val;
   })
- 
+  items = data.map((val) => {
+    return JSON.parse(JSON.stringify(val)); 
+  })
     // console.log(data);
 
   mensClothing(data);
@@ -147,6 +294,11 @@ const womensClothing = (data) => {
 
 getProducts();
 
-// redCheck.addEventListener("", redCheckHandler);
 searchBar.addEventListener("input" , searchBarHandler);
+allFilters.forEach((val) => {
+  val.addEventListener("click", allFiltersHandler);
+})
+checkboxFilters.forEach((val) => {
+  val.addEventListener("change", checkboxFiltersHandler);
+})
 

@@ -26,23 +26,23 @@
           <title>Colors</title>
           <ul>
             <li>
-              <input id="red" type="checkbox" name="color" />
+              <input id="red" type="checkbox" name="color"  class="check-value"/>
               <label for="red">Red</label>
             </li>
             <li>
-              <input id="blue" type="checkbox" name="color" />
+              <input id="blue" type="checkbox" name="color" class="check-value"/>
               <label for="blue">Blue</label>
             </li>
             <li>
-              <input id="green" type="checkbox" name="color" />
+              <input id="green" type="checkbox" name="color" class="check-value"/>
               <label for="green">Green</label>
             </li>
             <li>
-              <input id="black" type="checkbox" name="color" />
+              <input id="black" type="checkbox" name="color" class="check-value"/>
               <label for="black">Black</label>
             </li>
             <li>
-              <input id="white" type="checkbox" name="color" />
+              <input id="white" type="checkbox" name="color" class="check-value"/>
               <label for="white">White</label>
             </li>
           </ul>
@@ -112,11 +112,11 @@
       <main-content>
         <input type="text" placeholder="Search" id="search-bar"/>
         <div class="filters">
-          <div class="filter active">All</div>
-          <div class="filter">Mens</div>
-          <div class="filter">Womens</div>
-          <div class="filter">Jewellery</div>
-          <div class="filter">Electronics</div>
+          <div class="filter active" id="all-filter">All</div>
+          <div class="filter" id="mens-filter">Mens</div>
+          <div class="filter" id="womens-filter">Womens</div>
+          <div class="filter" id="jewellery-filter">Jewellery</div>
+          <div class="filter" id="electronics-filter">Electronics</div>
         </div>
         <section>
           <title>Men's Clothing</title>
