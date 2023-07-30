@@ -61,15 +61,15 @@ nav .nav-items a {
 /* main */
 main .items {
   display: flex;
-  width: 100%;
+  width: 68%;
   flex-wrap: wrap;
-  /* overflow-x: scroll; */
-  padding: 1rem 0;
+  /* padding: 1rem 0rem; */
   gap: 1rem;
+  margin: 30px 50px;
 }
 
 main .items .item {
-  flex-basis: calc(25.33% - 10px);
+  flex-basis: calc(32.33% - 10px);
   border: 1px solid black;
   width: 30%;
 }
