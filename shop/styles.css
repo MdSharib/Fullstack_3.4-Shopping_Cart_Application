@@ -53,6 +53,18 @@ nav .brand {
   font-weight: bold;
 }
 
+#cart-count{
+  position: absolute;
+    top: 11px;
+    margin-left: 5px;
+    /* left: -1px; */
+    background-color: red;
+    color: white;
+    width: 17px;
+    border-radius: 50%;
+    text-align: center;
+}
+
 nav .nav-items a {
   margin: 0 1rem;
 }

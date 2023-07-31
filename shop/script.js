@@ -13,6 +13,8 @@
 const menClothingSection = document.getElementById("men-clothing");
 const womenClothingSection = document.getElementById("women-clothing");
 const searchBar = document.getElementById("search-bar");
+const userNav = document.getElementById("user-nav");
+const cartCount = document.getElementById("cart-count");
 
 // all/mens filters
 // const allFilter = document.getElementById("all-filter");
@@ -34,6 +36,31 @@ let menClothes = [];
 let womenClothes = [];
 let items = [];
 let cartItems = [];
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  const getCurrentUser =JSON.parse(localStorage.getItem("currentUser"));
+  const itemCart = JSON.parse(localStorage.getItem("cartItems"));
+  // if (getCartItems.length <= 0 ) {
+  //   console.log("no items")
+  //   // alert("unauthorized access! redirect to login page."); //add toster
+  //   cartItemsDiv.innerHTML = `No cart Items!`
+  //   return;
+  // };
+  if(itemCart){
+    cartCount.innerText = itemCart.length; 
+
+  }
+  userNav.innerText = `Hello! ${getCurrentUser.firstName}`
+});
+
+
+
+
+
+
 
 // filter logic
 const redCheckHandler = (ev) => {
@@ -338,6 +365,7 @@ const getProducts = async() => {
 // adding to cart
 const addBtnHandler = (ev) => {
   const id = ev.value;
+  
   const product = items.find((val) => {
     if(+val["id"] === +id){
       return val;
@@ -347,10 +375,10 @@ const addBtnHandler = (ev) => {
   setCartToLocalStorage(product);
 }
 
-
+// add cart to current user
 const setCartToLocalStorage = (product) => {
   let itemCart = JSON.parse(localStorage.getItem("cartItems"));
-
+  cartCount.innerText = itemCart.length+1; 
   if(!itemCart){
     itemCart = [];
     itemCart.push(product);
