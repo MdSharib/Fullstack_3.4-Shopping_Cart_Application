@@ -59,13 +59,29 @@ nav .nav-items a {
 
 
 /* main */
+
+
+main #my-cart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 6px 0px;
+  font-size: 55px;
+  font-weight: 600;
+}
+
+main #main-cart{
+  display: flex;
+}
+
+
 main .items {
   display: flex;
   width: 68%;
   flex-wrap: wrap;
   /* padding: 1rem 0rem; */
   gap: 1rem;
-  margin: 30px 50px;
+  margin: 30px 25px;
 }
 
 main .items .item {
@@ -108,4 +124,64 @@ main .items .item .circle {
   height: 20px;
   border-radius: 100%;
   margin: 0 5px;
+}
+
+/* checkout styling */
+
+#checkout-heading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+#checkout-list{
+  background-color: black;
+    color: white;
+    width: 27%;
+    height: max-content;
+    margin: 30px 0px;
+}
+#checkout-list .checkout-items{
+  display: flex;
+  justify-content: space-between;
+  margin: 15px;
+  /* width: 100%; */
+}
+
+.checkout-items .checkout-title{
+  /* width: 80%; */
+}
+.checkout-items .checkout-price{
+  /* width: 20%; */
+}
+
+#checkout-list .checkout-total-div{
+  border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.checkout-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 15px 0px;
+
+}
+.checkout-btn button{
+  width: 80%;
+  align-self: center;
+  height: 33px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+
 }
