@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   };
   cartItems = JSON.parse(JSON.stringify(getCartItems));
-  renderCartItems(cartItems);
+  renderCartItems();
   renderCheckoutItems();
 });
 
@@ -30,13 +30,44 @@ const renderCartItems = (getCartItems) => {
          <div>Title: ${val["title"]}</div>
          <div>Price: ${val["price"]}</div>
          </div>
-         <button id="addBtn">Remove from Cart</button>
+         <button id="removeBtn" value=${val["id"]} onClick="removeBtnHandler(this)">Remove From Cart</button>
        </div>`;
 
     });
     cartItemsDiv.innerHTML = list;
 }
 
+
+
+// remove btn handler
+const removeBtnHandler = (ev) => {
+  const id = ev.value;
+
+  const toRemove = cartItems.find((val) => {
+    if(+id === +val["id"]){
+      return val;
+    }
+  });
+  const newCart = cartItems.filter((val) => {
+    if(+toRemove["id"] !== +val["id"]){
+      return val;
+    }
+  });
+
+  cartItems = JSON.parse(JSON.stringify(newCart));
+ 
+  renderCartItems();
+  renderCheckoutItems();
+  
+
+ localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
+  
+}
+
+
+
+// checkout cart 
 const renderCheckoutItems = (getCheckoutItems) => {
   let list = "";
   let totalPrice = 0;
