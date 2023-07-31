@@ -1,4 +1,5 @@
 const userName = document.getElementById("user-name");
+const lastName = document.getElementById("last-name");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
 const confirmPassword = document.getElementById("cpassword");
@@ -57,6 +58,7 @@ const signUpFn = (ev) => {
   ev.preventDefault();
   if (
     userName.value.trim() === "" ||
+    lastName.value.trim() === "" ||
     email.value.trim() === "" ||
     password.value.trim() === "" ||
     confirmPassword.value.trim() === ""
@@ -76,7 +78,8 @@ const signUpFn = (ev) => {
   //   (Math.random() + " ").substring(2, 10) +
   //   (Math.random() + " ").substring(2, 10);
   let user = {
-    name: userName.value,
+    firstName: userName.value,
+    lastName: lastName.value,
     email: email.value,
     password: password.value,
   };
