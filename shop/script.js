@@ -12,6 +12,8 @@
 
 const menClothingSection = document.getElementById("men-clothing");
 const womenClothingSection = document.getElementById("women-clothing");
+const jewellerySection = document.getElementById("jewellery-div");
+const electronicsSection = document.getElementById("electronics-div");
 const searchBar = document.getElementById("search-bar");
 const userNav = document.getElementById("user-nav");
 const cartCount = document.getElementById("cart-count");
@@ -36,7 +38,8 @@ let menClothes = [];
 let womenClothes = [];
 let items = [];
 let cartItems = [];
-
+let jewelleryItems = [];
+let electronicsItems = [];
 
 
 
@@ -88,12 +91,26 @@ const searchBarHandler = (ev) => {
       return val;
     }
   });
+  const searchedJewellery = jewelleryItems.filter((val) => {
+    const title = val["title"].toLowerCase();
+    if(title.includes(userSearch)){
+      return val;
+    }
+  });
+  const searchedElectronics = electronicsItems.filter((val) => {
+    const title = val["title"].toLowerCase();
+    if(title.includes(userSearch)){
+      return val;
+    }
+  });
 
   // console.log(searchedMen);
   // console.log(searchedWomen);
 
   displayItems(menClothingSection, searchedMen);
   displayItems(womenClothingSection, searchedWomen);
+  displayItems(jewellerySection, searchedJewellery);
+  displayItems(electronicsSection, searchedElectronics);
 }
 
 
@@ -287,10 +304,14 @@ const rangeFilterHandler = (ev) => {
   if(rangeFiltered.length <= 0 && ev.target.value !== "5"){
     mensClothing(items);
     womensClothing(items);
+    jewelleryCategory(items);
+    electronicsCategory(items);
     return;
   }
   mensClothing(rangeFiltered);
   womensClothing(rangeFiltered);
+  jewelleryCategory(rangeFiltered);
+    electronicsCategory(rangeFiltered);
 }
 
 
@@ -330,10 +351,14 @@ const priceCheckboxFiltersHandler = (ev) => {
    if(priceCheckFiltered.length <= 0){
      mensClothing(items);
      womensClothing(items);
+     jewelleryCategory(items);
+    electronicsCategory(items);
      return;
    }
    mensClothing(priceCheckFiltered);
    womensClothing(priceCheckFiltered);
+   jewelleryCategory(priceCheckFiltered);
+    electronicsCategory(priceCheckFiltered);
  }
 
 
@@ -351,14 +376,16 @@ const getProducts = async() => {
     val["size"] = addRandomSize();
 
     return val;
-  })
+  });
   items = data.map((val) => {
     return JSON.parse(JSON.stringify(val)); 
   })
-    // console.log(data);
+    console.log(items);
 
   mensClothing(data);
   womensClothing(data);
+  jewelleryCategory(data);
+  electronicsCategory(data);
 }
 
 
@@ -404,6 +431,7 @@ const setCartToLocalStorage = (product) => {
 // display onto UI in shop page
 const displayItems = (target, data) => {
   let items = "";
+  if(target === womenClothingSection || target === menClothingSection){
   const toDisplay = data.map((val) => {
     return items += `
     <div class="item">
@@ -426,6 +454,25 @@ const displayItems = (target, data) => {
             </div>
     `
   });
+}else {
+  const toDisplay = data.map((val) => {
+    return items += `
+    <div class="item">
+              <img src=${val["image"]} alt="Item" />
+              <div class="info">
+              <div>${val["title"]}</div>
+                <div class="row">
+                  <div class="price">$${val["price"]}</div>
+                
+                </div>
+    
+                <div class="row">Rating: ${val["rating"]["rate"]}</div>
+              </div>
+              <button id="addBtn" value=${val["id"]} onClick="addBtnHandler(this)">Add to Cart</button>
+            </div>
+    `
+  });
+}
   target.innerHTML = items;
 }
 
@@ -467,6 +514,29 @@ const womensClothing = (data) => {
 
     console.log(womenClothes);
     displayItems(womenClothingSection, womenClothes);
+} 
+
+// filtering jewellery 
+const jewelleryCategory = (data) => {
+  jewelleryItems = data.filter((val) => {
+      if(val["category"] === "jewelery"){
+        return val;
+      }
+    });
+
+    // console.log(jewelleryCateg);
+    displayItems(jewellerySection, jewelleryItems);
+} 
+// filtering electronics  
+const electronicsCategory = (data) => {
+  electronicsItems = data.filter((val) => {
+      if(val["category"] === "electronics"){
+        return val;
+      }
+    });
+
+    // console.log(jewelleryCateg);
+    displayItems(electronicsSection, electronicsItems);
 } 
 
 
