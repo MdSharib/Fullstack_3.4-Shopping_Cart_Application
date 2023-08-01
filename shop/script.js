@@ -545,7 +545,7 @@ const displayItems = (target, data) => {
     <div class="item">
               <img src=${val["image"]} alt="Item" />
               <div class="info">
-              <div>${val["title"]}</div>
+              <div><b>${val["title"]}</b></div>
                 <div class="row">
                   <div class="price">$${val["price"]}</div>
                 
