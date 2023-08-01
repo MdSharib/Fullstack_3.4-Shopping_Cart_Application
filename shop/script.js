@@ -51,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //   cartItemsDiv.innerHTML = `No cart Items!`
   //   return;
   // };
+  
   if (itemCart) {
     cartCount.innerText = itemCart.length;
   }
@@ -111,7 +112,7 @@ const clearOtherFilters = () => {
   });
 };
 
-// handlnng mens/womens filter logic - wrong logic for electronic/jewellery category
+// handlnng mens/womens filter logic
 const allFiltersHandler = (ev) => {
   console.log(ev);
   const selectedId = ev.target.id;

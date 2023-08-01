@@ -7,18 +7,26 @@ const changePasswordBtn = document.getElementById("change-pass-btn");
 const oldPassword = document.getElementById("old-password");
 const newPassword = document.getElementById("new-password");
 const confirmPassword = document.getElementById("confirm-new-password");
+const userNav = document.getElementById("user-nav");
+const cartCount = document.getElementById("cart-count");
 
 
 let user = [];
 
 document.addEventListener("DOMContentLoaded", function () {
     const getCurrentUser =JSON.parse(localStorage.getItem("currentUser"));
+    const itemCart = JSON.parse(localStorage.getItem("cartItems"));
     // if (getCartItems.length <= 0 ) {
     //   console.log("no items")
     //   // alert("unauthorized access! redirect to login page."); //add toster
     //   cartItemsDiv.innerHTML = `No cart Items!`
     //   return;
     // };
+
+    if (itemCart) {
+        cartCount.innerText = itemCart.length;
+    }
+    userNav.innerText = `Hello! ${getCurrentUser.firstName}`;
 
     user.push(getCurrentUser); 
 

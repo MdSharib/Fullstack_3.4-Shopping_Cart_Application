@@ -3,10 +3,13 @@
 const cartItemsDiv = document.getElementById("cart-items");
 const checkoutContent = document.getElementById("checkout-content");
 const totalPriceDiv = document.getElementById("total-price");
+const userNav = document.getElementById("user-nav");
+const cartCount = document.getElementById("cart-count");
 
 let cartItems = [];
 
 document.addEventListener("DOMContentLoaded", function () {
+  const getCurrentUser =JSON.parse(localStorage.getItem("currentUser"));
   const getCartItems =JSON.parse(localStorage.getItem("cartItems"));
   if (getCartItems.length <= 0 ) {
     console.log("no items")
@@ -14,6 +17,10 @@ document.addEventListener("DOMContentLoaded", function () {
     cartItemsDiv.innerHTML = `No cart Items!`
     return;
   };
+  userNav.innerText = `Hello! ${getCurrentUser.firstName}`;
+  if (getCartItems) {
+    cartCount.innerText = getCartItems.length;
+    }
   cartItems = JSON.parse(JSON.stringify(getCartItems));
   renderCartItems();
   renderCheckoutItems();
@@ -55,7 +62,10 @@ const removeBtnHandler = (ev) => {
   });
 
   cartItems = JSON.parse(JSON.stringify(newCart));
- 
+  
+    cartCount.innerText = newCart.length;
+    
+
   renderCartItems();
   renderCheckoutItems();
   
