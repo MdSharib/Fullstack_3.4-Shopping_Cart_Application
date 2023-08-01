@@ -99,6 +99,10 @@ main{
     font-weight: 600;
 }
 
+#edit-password{
+  font-size: 32px;
+  font-weight: 600;
+}
 
 #avatar{
     width: 15%;

@@ -9,6 +9,8 @@
 //   rating: { rate: 3.9, count: 120 },
 // };
 
+// hover
+
 const menClothingSection = document.getElementById("men-clothing");
 const womenClothingSection = document.getElementById("women-clothing");
 const jewellerySection = document.getElementById("jewellery-div");
@@ -535,7 +537,9 @@ const displayItems = (target, data) => {
                 </div>
                 <div class="row">Rating: ${val["rating"]["rate"]}</div>
               </div>
-              <button id="addBtn" value=${val["id"]} onClick="addBtnHandler(this)">Add to Cart</button>
+              <button id="addBtn" value=${val["id"]} class="btn-epic"  onClick="addBtnHandler(this)">
+              <div><span>Add to Cart</span><span>Add to Cart</span></div>
+          </button>
             </div>
     `);
     });
@@ -553,7 +557,9 @@ const displayItems = (target, data) => {
     
                 <div class="row">Rating: ${val["rating"]["rate"]}</div>
               </div>
-              <button id="addBtn" value=${val["id"]} onClick="addBtnHandler(this)">Add to Cart</button>
+              <button id="addBtn" value=${val["id"]} class="btn-epic"  onClick="addBtnHandler(this)">
+              <div><span>Add to Cart</span><span>Add to Cart</span></div>
+          </button>
             </div>
     `);
     });
