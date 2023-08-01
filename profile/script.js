@@ -50,6 +50,31 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// toast notification
+const notifications = document.querySelector(".notifications");
+
+const createToast = (text) => {
+  const timer = 5000;
+  const toast = document.createElement("li");
+  toast.className = `toast success`;
+
+  toast.innerHTML = `<div class="column">
+												<i class="fa-solid fa-circle-check"></i>
+												<span style="color: black">${text}</span>
+										</div>
+										<i class="fa-solid fa-xmark" onclick="removeToast(this.parentElement)"></i>`;
+  notifications.appendChild(toast);
+
+  toast.timeoutId = setTimeout(() => removeToast(toast), timer);
+};
+
+const removeToast = (toast) => {
+  toast.classList.add("hide");
+  if (toast.timeoutId) clearTimeout(toast.timeoutId);
+  setTimeout(() => toast.remove(), 500);
+};
+
+
 
 const displayDetails = () => {
     firstName.value = user[0]["firstName"];
@@ -79,7 +104,7 @@ const saveInfoBtnHandler = () => {
     });
     localStorage.setItem("users", JSON.stringify(newUsers));
     clearFields();
-    alert("Successfully Updated!")
+    createToast("Updated Successfully!")
 }
 
 // catchig password values
@@ -89,11 +114,11 @@ const changePasswordBtnHandler = () => {
     const enteredConfirmPassword = confirmPassword.value;
 
     if(enteredNewPassword !== enteredConfirmPassword){
-        alert("please enter same password");
+        createToast("please enter same password");
         return;
     }
     if((user[0]["password"]) !== enteredOldPassword){
-        alert("please enter correct old password");
+        createToast("please enter correct old password");
         return;
     }
     user[0].password = enteredNewPassword;
@@ -110,7 +135,7 @@ const changePasswordBtnHandler = () => {
     });
     localStorage.setItem("users", JSON.stringify(newUsers));
     clearFields();
-    alert("Successfully Updated!");
+    createToast("Updated Successfully!");
 
 }
 

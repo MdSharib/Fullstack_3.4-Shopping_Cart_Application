@@ -477,7 +477,6 @@ const getProducts = async () => {
 // adding to cart
 const addBtnHandler = (ev) => {
   const id = ev.value;
-
   const product = items.find((val) => {
     if (+val["id"] === +id) {
       return val;
@@ -496,7 +495,7 @@ const setCartToLocalStorage = (product) => {
     itemCart.push(product);
     cartItems.push(product);
     localStorage.setItem("cartItems", JSON.stringify(itemCart));
-    alert("added to cart!");
+    createToast("Added to Cart");
     console.log(cartItems);
     return;
   }
@@ -504,7 +503,12 @@ const setCartToLocalStorage = (product) => {
   itemCart.push(product);
   localStorage.setItem("cartItems", JSON.stringify(itemCart));
   cartItems.push(product);
-  alert("added to cart!");
+  // let x = document.getElementById("snackbar");
+  // x.className = "show";
+  // setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+ createToast("Added to Cart");
+  
+  // alert("added to cart!");
   console.log(cartItems);
   return;
 };
@@ -580,6 +584,7 @@ const mensClothing = (data) => {
   displayItems(menClothingSection, menClothes);
 };
 
+
 // filtering womens clothing
 const womensClothing = (data) => {
   womenClothes = data.filter((val) => {
@@ -636,3 +641,28 @@ rangeFilter.addEventListener("change", rangeFilterHandler);
 priceCheckboxFilters.forEach((val) => {
   val.addEventListener("change", priceCheckboxFiltersHandler);
 });
+
+
+// toast notification
+const notifications = document.querySelector(".notifications");
+
+const createToast = (text) => {
+  const timer = 5000;
+  const toast = document.createElement("li");
+  toast.className = `toast success`;
+
+  toast.innerHTML = `<div class="column">
+												<i class="fa-solid fa-circle-check"></i>
+												<span style="color: black">${text}</span>
+										</div>
+										<i class="fa-solid fa-xmark" onclick="removeToast(this.parentElement)"></i>`;
+  notifications.appendChild(toast);
+
+  toast.timeoutId = setTimeout(() => removeToast(toast), timer);
+};
+
+const removeToast = (toast) => {
+  toast.classList.add("hide");
+  if (toast.timeoutId) clearTimeout(toast.timeoutId);
+  setTimeout(() => toast.remove(), 500);
+};

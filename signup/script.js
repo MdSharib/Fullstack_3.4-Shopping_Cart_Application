@@ -17,6 +17,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+
+
+
 const clearingFields = (token) => {
   alert("Successfully registered! Please login in.");
   userName.value = "";
