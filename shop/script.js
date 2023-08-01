@@ -44,6 +44,8 @@ let electronicsItems = [];
 
 document.addEventListener("DOMContentLoaded", function () {
   const getCurrentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const token = localStorage.getItem("userToken");
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
   const itemCart = JSON.parse(localStorage.getItem("cartItems"));
   // if (getCartItems.length <= 0 ) {
   //   console.log("no items")
@@ -51,6 +53,12 @@ document.addEventListener("DOMContentLoaded", function () {
   //   cartItemsDiv.innerHTML = `No cart Items!`
   //   return;
   // };
+
+  if (isLoggedIn === "false" || !token) {
+    // alert("unauthorized access! redirect to login page."); //add toster
+    window.location.href = "../index.html";
+    return;
+  }
   
   if (itemCart) {
     cartCount.innerText = itemCart.length;

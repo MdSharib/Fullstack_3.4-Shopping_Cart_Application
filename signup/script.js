@@ -7,25 +7,26 @@ const continueBtn = document.getElementById("continue-btn");
 const errorSection = document.getElementById("error-section");
 
 // ensuring users cannot manually navigate to the "index" page unless they click logout
-// document.addEventListener("DOMContentLoaded", function () {
-//   const token = localStorage.getItem("userToken");
-//   const isLoggedIn = localStorage.getItem("isLoggedIn");
-//   if (isLoggedIn === "true" || token) {
-//     // alert("unauthorized access! redirect to login page."); //add toster
-//     window.location.href = "./profile";
-//     return;
-//   }
-// });
+document.addEventListener("DOMContentLoaded", function () {
+  const token = localStorage.getItem("userToken");
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  if (isLoggedIn === "true" || token) {
+    // alert("unauthorized access! redirect to login page."); //add toster
+    window.location.href = "../shop";
+    return;
+  }
+});
 
 const clearingFields = (token) => {
   alert("Successfully registered!");
   userName.value = "";
+  lastName.value = "",
   email.value = "";
   password.value = "";
   confirmPassword.value = "";
   // localStorage.setItem("isLoggedIn", true);
   // localStorage.setItem("userToken", JSON.stringify(token));
-  window.location.href = "../shop";
+  window.location.href = "../login";
 };
 
 // setting up local storage

@@ -5,24 +5,25 @@ const loginBtn = document.getElementById("login-btn");
 const errorSection = document.getElementById("error-section");
 
 // ensuring users cannot manually navigate to the "index" page unless they click logout
-// document.addEventListener("DOMContentLoaded", function () {
-//   const token = localStorage.getItem("userToken");
-//   const isLoggedIn = localStorage.getItem("isLoggedIn");
-//   if (isLoggedIn === "true" || token) {
-//     // alert("unauthorized access! redirect to login page."); //add toster
-//     window.location.href = "./profile";
-//     return;
-//   }
-// });
+document.addEventListener("DOMContentLoaded", function () {
+  const token = localStorage.getItem("userToken");
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+
+  if (isLoggedIn === "true" || token) {
+    // alert("unauthorized access! redirect to login page."); //add toster
+    window.location.href = "../shop";
+    return;
+  }
+});
 
 const clearingFields = (token) => {
-  alert("Successfully registered!");
-  userName.value = "";
+  alert("Successfully logged in!");
   email.value = "";
   password.value = "";
-  confirmPassword.value = "";
   localStorage.setItem("isLoggedIn", true);
   localStorage.setItem("userToken", JSON.stringify(token));
+  localStorage.setItem("cartItems", JSON.stringify([]));
   window.location.href = "../shop";
 };
 
@@ -57,7 +58,7 @@ console.log("local passed")
   localStorage.setItem("currentUser", JSON.stringify(existingUser));
   localStorage.setItem("isLoggedIn", true);
   window.location.href = "../shop";
-//   clearingFields(userData.token);
+  clearingFields(userData.token);
 };
 
 

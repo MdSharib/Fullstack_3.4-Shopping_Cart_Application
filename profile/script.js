@@ -9,6 +9,7 @@ const newPassword = document.getElementById("new-password");
 const confirmPassword = document.getElementById("confirm-new-password");
 const userNav = document.getElementById("user-nav");
 const cartCount = document.getElementById("cart-count");
+const logoutBtn = document.getElementById("logout-btn");
 
 
 let user = [];
@@ -16,12 +17,27 @@ let user = [];
 document.addEventListener("DOMContentLoaded", function () {
     const getCurrentUser =JSON.parse(localStorage.getItem("currentUser"));
     const itemCart = JSON.parse(localStorage.getItem("cartItems"));
+    const token = localStorage.getItem("userToken");
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
     // if (getCartItems.length <= 0 ) {
     //   console.log("no items")
     //   // alert("unauthorized access! redirect to login page."); //add toster
     //   cartItemsDiv.innerHTML = `No cart Items!`
     //   return;
     // };
+  
+  // if (getCartItems.length <= 0 ) {
+  //   console.log("no items")
+  //   // alert("unauthorized access! redirect to login page."); //add toster
+  //   cartItemsDiv.innerHTML = `No cart Items!`
+  //   return;
+  // };
+
+  if (isLoggedIn === "false" || !token) {
+    // alert("unauthorized access! redirect to login page."); //add toster
+    window.location.href = "../index.html";
+    return;
+  }
 
     if (itemCart) {
         cartCount.innerText = itemCart.length;
@@ -105,5 +121,17 @@ const clearFields = () => {
     confirmPassword.value = "";
 }
 
+
+// logout btn functionality
+const logoutBtnHandler = () => {
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("cartItems");
+    localStorage.removeItem("userToken");
+    localStorage.setItem("isLoggedIn", false);
+    window.location.href = "../index.html";
+    return;
+}
+
 saveInfoBtn.addEventListener("click", saveInfoBtnHandler)
 changePasswordBtn.addEventListener("click", changePasswordBtnHandler);
+logoutBtn.addEventListener("click", logoutBtnHandler);

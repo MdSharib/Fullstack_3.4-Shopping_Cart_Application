@@ -7,6 +7,18 @@ const signupBtn = document.getElementById("signup-btn");
 const loginBtn = document.getElementById("login-btn");
 
 
+
+// ensuring users cannot manually navigate to the "index" page unless they click logout
+document.addEventListener("DOMContentLoaded", function () {
+    const token = localStorage.getItem("userToken");
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (isLoggedIn === "true" || token) {
+      // alert("unauthorized access! redirect to login page."); //add toster
+      window.location.href = "../shop";
+      return;
+    }
+  });
+
 const signupBtnHandler =() => {
     window.location.href = "./signup";
 }
