@@ -32,7 +32,8 @@ const checkLocalStorage = (userData) => {
   let users = JSON.parse(localStorage.getItem("users"));
   // console.log(typeof users);
   if (!users) {
-    alert("no entries found!");
+    alert("no entries found! please sign up.");
+    window.location.href = "../signup";
     return;
   }
 

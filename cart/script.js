@@ -5,6 +5,7 @@ const checkoutContent = document.getElementById("checkout-content");
 const totalPriceDiv = document.getElementById("total-price");
 const userNav = document.getElementById("user-nav");
 const cartCount = document.getElementById("cart-count");
+const checkoutBtn = document.getElementById("checkout-btn");
 
 let cartItems = [];
 
@@ -87,6 +88,17 @@ const removeBtnHandler = (ev) => {
 }
 
 
+// proceed to checkout
+const checkoutBtnHandler =() => {
+  if(cartItems.length <= 0) {
+    alert("Please add items to cart before payment!");
+    return;
+  }
+
+  window.location.href = "../razorpay";
+}
+
+
 
 // checkout cart 
 const renderCheckoutItems = (getCheckoutItems) => {
@@ -103,4 +115,4 @@ const renderCheckoutItems = (getCheckoutItems) => {
     checkoutContent.innerHTML = list;
 }
 
-
+checkoutBtn.addEventListener("click", checkoutBtnHandler);

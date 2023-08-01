@@ -73,6 +73,7 @@ const saveInfoBtnHandler = () => {
         if(val["email"] === newUser["email"]){
             val.firstName = newFirstName;
     val.lastName = newLastName;
+    userNav.innerText = `Hello! ${newFirstName}`;
         };
         return val;
     });
