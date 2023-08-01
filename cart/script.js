@@ -46,8 +46,8 @@ const renderCartItems = (getCartItems) => {
          list += `<div class="item">
          <img src=${val["image"]} alt="Item" />
          <div class="info">
-         <div>Title: ${val["title"]}</div>
-         <div>Price: ${val["price"]}</div>
+         <div>Title: <b>${val["title"]}</b></div>
+         <div>Price: $${val["price"]}</div>
          </div>
          <button id="removeBtn" value=${val["id"]} onClick="removeBtnHandler(this)">Remove From Cart</button>
        </div>`;
