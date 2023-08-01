@@ -21,6 +21,11 @@ document.addEventListener("DOMContentLoaded", function () {
     window.location.href = "../index.html";
     return;
   }
+  if(getCartItems.length <= 0){
+    alert("there are no items in cart! click to redirect.")
+    window.location.href = "../shop";
+    return;
+  }
 
   userCart = JSON.parse(JSON.stringify(getCartItems));
   console.log(userCart);
