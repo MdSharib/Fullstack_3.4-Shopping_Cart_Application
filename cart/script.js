@@ -49,7 +49,7 @@ const renderCartItems = (getCartItems) => {
          <div>Title: <b>${val["title"]}</b></div>
          <div>Price: $${val["price"]}</div>
          </div>
-         <button id="removeBtn" value=${val["id"]} onClick="removeBtnHandler(this)">Remove From Cart</button>
+         <button id="removeBtn" value=${val["id"]} class="btn-epic" onClick="removeBtnHandler(this)"><div><span>Remove from cart</span><span>Remove from cart</span></div></button>
        </div>`;
 
     });
