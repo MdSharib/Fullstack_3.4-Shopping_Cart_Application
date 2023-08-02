@@ -5,7 +5,7 @@
 
 const signupBtn = document.getElementById("signup-btn");
 const loginBtn = document.getElementById("login-btn");
-const HomeNav = document.getElementById("home-nav");
+
 
 
 
@@ -34,6 +34,3 @@ const loginBtnHandler =() => {
 signupBtn.addEventListener("click", signupBtnHandler);
 loginBtn.addEventListener("click", loginBtnHandler);
 
-HomeNav.addEventListener("click", () => {
-  window.href.location = "./index.html";
-})
