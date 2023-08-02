@@ -76,10 +76,10 @@ const redCheckHandler = (ev) => {
 // search-bar logic
 const searchBarHandler = (ev) => {
   const userSearch = ev.target.value.trim().toLowerCase();
-  console.log("search val is" + userSearch);
-  console.log("array data");
-  console.log(menClothes);
-  console.log(womenClothes);
+  console.log("search val is " + userSearch);
+  // console.log("array data");
+  // console.log(menClothes);
+  // console.log(womenClothes);
 
   const searchedMen = menClothes.filter((val) => {
     const title = val["title"].toLowerCase();

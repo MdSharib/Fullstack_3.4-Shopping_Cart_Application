@@ -87,6 +87,8 @@ const signUpFn = (ev) => {
     email: email.value,
     password: password.value,
   };
+  console.log("signed up user details:");
+  console.log(user);
   setLocalStorage(user);
   // console.log(user);
 };

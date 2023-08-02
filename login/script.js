@@ -54,7 +54,8 @@ const checkLocalStorage = (userData) => {
     return;
   }
 
-console.log("local passed")
+  console.log("logged in user details:");
+  console.log(userData);
 //   users.push(userData);
   localStorage.setItem("currentUser", JSON.stringify(existingUser));
   localStorage.setItem("isLoggedIn", true);
